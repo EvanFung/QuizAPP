@@ -2,14 +2,14 @@ var mongoose = require('mongoose');
 
 var QuestionsSchema = new mongoose.Schema({
     question:String,
-    answers:[{
+    answers:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Answers"
-    }],
-    quizzes:[{
+    },
+    quizzes:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Quizzes"
-    }]
+    }
 });
 
 

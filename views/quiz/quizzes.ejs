@@ -1,0 +1,63 @@
+<% include ../partials/header %>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<div id="container" class="quiz">
+      <div class="row">
+          <div id="intro" class="col-md-8 col-md-offset-2">
+              <div id="ajaxupdater" class="alert"></div>
+          <h4>Quizzes</h4>
+            <table id="quizzes" class="table table-striped">
+                <thead>
+                    <tr><th>Name</th><th>Description</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                    <% quizzes.forEach(function(quiz) { %>
+                    <tr>
+                        <td><%= quiz.name %></td>
+                        <td><%= quiz.description %></td>
+                        <td>
+                            <a href="/quiz/<%= quiz._id %>/edit" title="Edit Quizzes" class="edit btn btn-default btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <form action="/quiz/<%= quiz._id %>?_method=DELETE" method="POST" style="display:inline">
+                                <button title="Delete Quiz" class="remove btn btn-default btn-danger" type="submit"><span class="glyphicon glyphicon-remove"></span></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            <p>
+                <button id="addquiz" title="Add New Quiz" type="button" class="btn btn-primary pull-right">Create New Quiz <span class="glyphicon glyphicon-plus-sign"></span></button>
+            </p>
+        </div>
+      </div><!-- /.row -->
+</div><!--container-->
+    
+    <!-- Add Quiz Modal -->
+    <div class="modal fade" id="quiz-add-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Add A New Quiz:</h4>
+          </div>
+            <form id="quizadd" method="post" action="/quiz">
+            <div class="modal-body">
+                <p><label for="quizname">Quiz Name:</label>
+                   <input name="quizname" id="quizname" type="text" placeholder="Quiz Name" class="form-control" required />
+                   <span class="helper help-block">Please provide a name for the quiz</span>
+                </p>
+                <p><label for="description">Quiz Description:</label>
+                   <input name="description" id="description" type="text" placeholder="Quiz Description" class="form-control" required />
+                </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-success">Create Quiz</button>
+            </div>
+            </form>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <script src="/js/quiz/index.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<% include ../partials/footer %>

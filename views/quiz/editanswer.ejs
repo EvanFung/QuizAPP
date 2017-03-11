@@ -1,0 +1,64 @@
+<% include ../partials/header %>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<div id="container" class="quiz container-fluid">
+        <div class="row">
+          <div id="intro" class="col-md-8 col-md-offset-2">
+              <div><a class="btn btn-primary" href="/quiz/<%= quizid%>/edit"><span class="glyphicon glyphicon-arrow-left"></span> Back to quiz details</a></div>
+                <h3>Edit Answers: </h3>
+                <div class="row">
+                    <div class="col-md-7">
+                        <h4><%= question.question %></h4>
+                            <form id="answeredit" action="/quiz/<%= quizid %>/question/<%= question._id%>/answer/<%= answer._id %>?_method=PUT" method="post">
+                            <table id="answers" class="table table-responsive table-hover table-bordered">
+                                <thead>
+                                    <tr><th style="text-align: center;">Correct Answer</th><th>Text</th></tr>
+                                </thead>
+                                <tbody data-correct-index="<%=index%>" id="answerIndex">
+                                    <% var i = 1;%>
+                                    <% answer.answer.forEach(function(answer) { %>
+                                    <tr class="answer-row">
+                                        <td style="text-align: center;">
+                                           <input class="correct" name="correct" value="<%= i-1 %>" type="radio"> 
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" name="answer[]" value="<%= answer %>" class="form-control">
+                                                <span class="input-group-btn">
+                                                    <button class="remove btn btn-default btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% i++ });%>
+                                    <tr class="template answer-row" style="display:none;">
+                                        <td style="text-align: center;">
+                                           <input class="correct" name="correct" type="radio" /> 
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                            <input type="text" name="" value="" class="form-control answerinput">
+                                            <span class="input-group-btn">
+                                                <button class="remove btn btn-default btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+                                            </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>
+                                <button type="submit" class="btn btn-success">Save <span class="glyphicon glyphicon-ok"></span></button>
+                                <button id="addanswer" type="button" class="btn btn-primary pull-right">Add <span class="glyphicon glyphicon-plus-sign"></span></button>
+                            </p>
+                            <input type="hidden" name="_METHOD" value="PUT" />
+                        </form> 
+                    </div>
+                    <div class="col-md-3">
+                        <div id="contextual"></div>
+                        <div id="contextual2"></div>
+                    </div>
+                </div>
+            </div>
+      </div><!-- /.row -->
+    <script src="/js/quiz/index.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<% include ../partials/footer %>
