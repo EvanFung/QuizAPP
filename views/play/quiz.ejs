@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <div id="container" class="quiz">
+      <div class="row">
+          <div id="intro" class="col-md-6 col-md-offset-3">
+          <h2></h2>
+          <h4></h4>
+          <p>Once you have started the quiz, you must answer all of the questions. If you try to go back to the previous question, your score will be reset and you will be sent back to the start.</p>
+          <p>For each question, choose an answer and click <strong>'Submit Answer'</strong>. You'll then be given the next question.</p>
+          <p>This quiz has <strong><?php echo $numquestions; ?></strong> questions.</p>
+          <p>You'll get your score at the end of the quiz.</p>
+              <div>
+                  <form id="questionBox" method="post" action="/play/quiz/<%= quiz._id %>/process">
+                      <p>
+                          <input type="hidden" name="quizid" value="<%= quiz._id %>" />
+                          <input type="submit" id="submitstart" name="starter" class="btn btn-lg btn-success"
+                          value="Start Quiz" />
+                      </p>
+                  </form>
+              </div>
+          </div>
+        
+      </div><!-- /.row -->
+        
+    </div><!--container-->
+    <script src="/js/quiz/index.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<% include ../partials/footer %>

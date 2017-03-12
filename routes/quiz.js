@@ -41,11 +41,6 @@ router.delete('/:id',(req,res) => {
     });
 });
 
-//handle new route
-router.get('/new',(req,res) => {
-    res.render('./quiz/new');
-});
-
 
 //handle show edit route
 router.get('/:id/edit',(req,res) => {
@@ -185,4 +180,5 @@ router.put('/:quizid/question/:questionid/answer/:answerid',(req,res) => {
         }
     });
 });
+
 module.exports = router;

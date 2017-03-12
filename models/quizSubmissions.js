@@ -9,6 +9,7 @@ var QuizSubmissionsSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Quizzes"        
     },
+    score:Number,
     submittedAt:{type:Date,default:Date.now}
 });
 

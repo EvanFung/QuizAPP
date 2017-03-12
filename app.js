@@ -11,6 +11,7 @@ var flash = require('connect-flash');
 var indexRoutes = require('./routes/index');
 var adminRoutes = require('./routes/admin');
 var quizRoutes = require('./routes/quiz');
+var playRoutes = require('./routes/play');
 mongoose.connect("mongodb://localhost/quiz_app");
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -18,7 +19,6 @@ app.set('view engine','ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method"));
 app.use(flash());
-
 //PASSPORT CONFIGURATION
 app.use(require('express-session')({
     secret:"Quiz App!",
@@ -46,6 +46,7 @@ app.use(function(req,res,next) {
 app.use(indexRoutes);
 app.use('/admin',adminRoutes);
 app.use('/quiz',quizRoutes);
+app.use('/play',playRoutes);
 app.listen(process.env.PORT,process.env.IP,function() {
     console.log('Quiz app server has started!');
 });

@@ -5,7 +5,7 @@ var QuizzesSchema = new mongoose.Schema({
     description:String,
     questions:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Question"
+        ref: "Questions"
     }]
 });
 
