@@ -5,10 +5,6 @@ var SubmissionAnswerSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "QuizSubmissions"        
     },
-    answers:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Answers"
-    }],
     questions:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Question"

@@ -3,8 +3,11 @@ var router = express.Router();
 var Quiz = require('../models/quizzes');
 var Question = require('../models/questions');
 var Answer = require('../models/answers');
+const middlewareObj = require('../middleware/index');
+var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
+router.all('/*',middlewareObj.requiresAdmin());
 //show all quizs page
-router.get('/',(req,res) => {
+router.get('/',middlewareObj.isLoggedIn,(req,res) => {
     Quiz.find({},(err,quizzes) => {
         if(err) {
             console.log(err);
